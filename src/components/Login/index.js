@@ -2,13 +2,21 @@
 import React, {useState} from 'react';
 //Styles
 import styles from './styles.module.css';
+import {connect} from "react-redux";
+import {userLogin} from "../../redux/actions";
+import {history} from '../../navigation/history';
 
-export const Login = () => {
+const Login = (props) => {
+    // let history = useHistory();
+    console.log('props', props)
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        const userData = {email: email, password: password}
+        props.userLogin(userData);
+        history.push('/home');
     }
     return (
         <div className={styles.container}>
@@ -34,4 +42,12 @@ export const Login = () => {
         </div>
     );
 };
+const mapStateToProps = (state) => ({
+// data from redux
+})
+const mapDispatchToProps = (dispatch) => ({
+    userLogin:(user)=>dispatch(userLogin(user)),
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
+
 
