@@ -1,7 +1,7 @@
 import axios from 'axios';
 // import authHeader from "../helper/authHeader";
 
-export function userLogin(user){
+export function userLogin(user, history){
     return (dispatch) => {
         axios({
             method: 'POST',
@@ -14,8 +14,7 @@ export function userLogin(user){
                     console.log('response', res)
                     if(res.data.token){
                         dispatch({type: 'SAVE_TOKEN', payload: res.data.token})
-                        // console.log(history);
-                        // history.push('/home');
+                        history.push('/home');
                     }
                 }
             )
@@ -38,7 +37,8 @@ export function getUser(token){
         })
             .then(
                 (res) => {
-                    console.log('response', res)
+                    console.log('response', res);
+                    dispatch({type: 'SAVE_USER', payload: res.data})
                 }
             )
             .catch(
