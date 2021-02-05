@@ -1,4 +1,5 @@
 import axios from 'axios';
+import {types} from "./types";
 // import authHeader from "../helper/authHeader";
 
 export function userLogin(user){
@@ -13,7 +14,8 @@ export function userLogin(user){
                 (res) => {
                     console.log('response', res)
                     if(res.data.token){
-                        dispatch({type: 'SAVE_TOKEN', payload: res.data.token})
+                        dispatch({type: types.SAVE_TOKEN, payload: res.data.token});
+                        dispatch({type:types.SAVE_USER, payload: res.data.user});
                         // console.log(history);
                         // history.push('/home');
                     }
@@ -30,6 +32,7 @@ export function getUser(token){
             Authorization: token || '',
             // 'Content-Type': 'application/json'
         };
+        console.log('line34')
         console.log(auth);
         axios({
             method: 'GET',
@@ -38,7 +41,7 @@ export function getUser(token){
         })
             .then(
                 (res) => {
-                    console.log('response', res)
+                    console.log('user', res)
                 }
             )
             .catch(

@@ -7,7 +7,6 @@ import {userLogin} from "../../redux/actions";
 import {history} from '../../navigation/history';
 
 const Login = (props) => {
-    // let history = useHistory();
     console.log('props', props)
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
