@@ -4,18 +4,19 @@ import React, {useState} from 'react';
 import styles from './styles.module.css';
 import {connect} from "react-redux";
 import {userLogin} from "../../redux/actions";
-import {history} from '../../navigation/history';
+import {useHistory} from "react-router";
+import {book} from "../../navigation/book";
 
 const Login = (props) => {
-    console.log('props', props)
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
+    const history = useHistory();
     const handleSubmit = (e) => {
         e.preventDefault();
         const userData = {email: email, password: password}
         props.userLogin(userData);
-        history.push('/home');
+        console.log('history.push', history);
+        history.push(book.home);
     }
     return (
         <div className={styles.container}>
@@ -41,7 +42,7 @@ const Login = (props) => {
         </div>
     );
 };
-const mapStateToProps = (state) => ({
+const mapStateToProps = () => ({
 // data from redux
 })
 const mapDispatchToProps = (dispatch) => ({

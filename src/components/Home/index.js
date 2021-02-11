@@ -1,32 +1,14 @@
-import React, {useEffect} from 'react';
-// import {getUser} from "../../redux/actions";
+import React from 'react';
 import {useSelector} from "react-redux";
 
-export const Home = (props) => {
-    const {user} = useSelector((state) => state);
-    const getUser = user;
-    console.log('getUser', getUser);
-    console.log('props', props);
-
-    useEffect(
-        () => {
-            // props.getUser(token);
-            // token
-
-        }, []
-    );
+export const Home = () => {
+    const user = useSelector((state) => state.user);
 
     return (
         <div>
-            Home: {getUser}
+            Home: {user}
         </div>
     );
 };
-// const mapStateToProps = (state) => ({
-//     token: state.token
-// })
-// const mapDispatchToProps = (dispatch) => ({
-//     getUser:(token)=>dispatch(getUser(token)),
-// })
-// export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default Home;
 
