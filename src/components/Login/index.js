@@ -11,6 +11,8 @@ const Login = (props) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const history = useHistory();
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const userData = {email: email, password: password}
@@ -18,6 +20,8 @@ const Login = (props) => {
         console.log('history.push', history);
         history.push(book.home);
     }
+
+
     return (
         <div className={styles.container}>
             <h2> LOGIN </h2>

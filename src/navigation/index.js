@@ -2,13 +2,14 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
+import {useSelector} from 'react-redux';
 
 //Routes
 import {book} from './book';
-import Login from "../components/Login";
-import Home from "../components/Home";
-import {useSelector} from "react-redux";
 
+//Components
+import Login from '../components/Login';
+import Home from '../components/Home';
 
 //Components
 export const Routes = () => {
