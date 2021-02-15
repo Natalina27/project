@@ -1,10 +1,11 @@
 import React, {useEffect} from 'react';
 import {getUser} from '../../redux/actions';
 import {useDispatch, useSelector} from 'react-redux';
+import {selectToken, selectUser} from '../../redux/selectors';
 
 export const  Home = () => {
-    const user = useSelector(state => state.user);
-    const token = useSelector(state => state.token);
+    const user = useSelector(selectUser);
+    const token = useSelector(selectToken);
     const dispatch = useDispatch();
 
     useEffect(() => dispatch(getUser(token)), []);

@@ -1,23 +1,26 @@
 //Core
 import React, {useState} from 'react';
+import {useDispatch} from 'react-redux';
+import {useHistory} from 'react-router';
+
 //Styles
 import styles from './styles.module.css';
-import {connect} from "react-redux";
-import {userLogin} from "../../redux/actions";
-import {useHistory} from "react-router";
-import {book} from "../../navigation/book";
 
-const Login = (props) => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+//Others
+import {book} from '../../navigation/book';
+import {userLogin} from '../../redux/actions';
+
+export const Login = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
     const history = useHistory();
-
+    const dispatch = useDispatch();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const userData = {email: email, password: password}
-        props.userLogin(userData);
-        console.log('history.push', history);
+        const userData = { email, password }
+        dispatch(userLogin(userData));
         history.push(book.home);
     }
 
@@ -46,12 +49,3 @@ const Login = (props) => {
         </div>
     );
 };
-const mapStateToProps = () => ({
-// data from redux
-})
-const mapDispatchToProps = (dispatch) => ({
-    userLogin:(user)=>dispatch(userLogin(user)),
-})
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
-
-
