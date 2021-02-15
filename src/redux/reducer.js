@@ -1,19 +1,22 @@
+import {types} from './types';
+
 const initialState = {
     token: '',
     user: {}
 }
 
-const appReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case 'SAVE_TOKEN':
+const appReducer = (
+    state = initialState,
+    action) => {
+    const { type, payload } = action;
+    switch (type) {
+        case types.SAVE_TOKEN:
             return {
-                ...state,
-                token: action.payload
+                ...state, token: payload
             }
-        case 'SAVE_USER':
+        case types.SAVE_USER:
             return {
-                ...state,
-                user: action.payload
+                ...state, user: payload
             }
         default:
             return state;

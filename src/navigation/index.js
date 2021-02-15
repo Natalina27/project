@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 //Routes
 import {book} from './book';
 import Login from "../components/Login";
-import Home from "../components/Home";
+import { Home } from "../components/Home";
 
 
 //Components
