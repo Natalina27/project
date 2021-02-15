@@ -1,7 +1,7 @@
 import axios from 'axios';
-// import authHeader from "../helper/authHeader";
+import {types} from './types';
 
-export function userLogin(user, history){
+export function userLogin(user){
     return (dispatch) => {
         axios({
             method: 'POST',
@@ -9,12 +9,13 @@ export function userLogin(user, history){
             data: user
         })
             .then(
-               // (res) => dispatch({type:'GET_MEMBERS', payload:res.data})
                 (res) => {
-                    console.log('response', res)
+                    const { SAVE_TOKEN, SAVE_USER } = types;
+                    const { token, user } = res.data;
+
                     if(res.data.token){
-                        dispatch({type: 'SAVE_TOKEN', payload: res.data.token})
-                        history.push('/home');
+                        dispatch({type: SAVE_TOKEN, payload: token});
+                        dispatch({type: SAVE_USER, payload: user});
                     }
                 }
             )
@@ -24,12 +25,10 @@ export function userLogin(user, history){
     }
 }
 export function getUser(token){
-    return (dispatch) => {
+    return () => {
         const auth = {
             Authorization: token || '',
-            // 'Content-Type': 'application/json'
         };
-        console.log(auth);
         axios({
             method: 'GET',
             url: `https://api-nodejs-todolist.herokuapp.com/user/me`,
@@ -37,8 +36,7 @@ export function getUser(token){
         })
             .then(
                 (res) => {
-                    console.log('response', res);
-                    dispatch({type: 'SAVE_USER', payload: res.data})
+                    console.log('user', res)
                 }
             )
             .catch(

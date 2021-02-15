@@ -1,12 +1,11 @@
 import {connect} from "react-redux";
 
-function authHeader(props) {
-    // return authorization header with jwt token
+function authHeader({token}) {
 
-    if (props.token) {
+
+    if (token) {
         return {
-            Authorization: props.token || '',
-            'Content-Type': 'application/json'
+            Authorization: token || '',
         };
     } else {
         return {};
@@ -15,7 +14,7 @@ function authHeader(props) {
 const mapStateToProps = (state) => ({
     token: state.token
 })
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = () => ({
     //userLogin:(user)=>dispatch(userLogin(user)),
 })
 export default connect(mapStateToProps, mapDispatchToProps)(authHeader);
