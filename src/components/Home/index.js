@@ -9,13 +9,14 @@ export const  Home = () => {
 
     useEffect(() => dispatch(getUser(token)), []);
 
+    const {name, email, age} = user;
+
     return (
         <div>
             Home
-            <div>Name: {user.name} </div>
-            <div>Email: {user.email} </div>
-            <div>Age: {user.age} </div>
-
+            <div>Name: { name } </div>
+            <div>Email: { email } </div>
+            <div>Age: { age } </div>
         </div>
     );
 }
